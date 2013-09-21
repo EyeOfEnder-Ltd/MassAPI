@@ -18,6 +18,7 @@ import com.eyeofender.massapi.database.table.Membership;
 public class Messenger {
 
     private static MassAPI api;
+    public static final String STORE_URL = "http://themassmc.com/shop";
 
     private Messenger() {
 

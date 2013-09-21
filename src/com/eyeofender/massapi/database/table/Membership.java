@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 
 import com.avaje.ebean.validation.Length;
 import com.avaje.ebean.validation.NotEmpty;
+import com.avaje.ebean.validation.NotNull;
 
 @Entity()
 @Table(name = "mass_memberships")
@@ -23,6 +24,9 @@ public class Membership {
     @NotEmpty
     @Length(max = 30)
     private String type;
+
+    @NotNull
+    private Integer priority;
 
     @Column
     private Date expiry;
@@ -45,6 +49,14 @@ public class Membership {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
     }
 
     public Date getExpiry() {

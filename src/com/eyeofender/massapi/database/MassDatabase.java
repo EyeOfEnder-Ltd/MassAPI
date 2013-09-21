@@ -55,6 +55,7 @@ public class MassDatabase {
             membership = new Membership();
             membership.setPlayer(player);
             membership.setType("None");
+            membership.setPriority(0);
             api.getDatabase().save(membership);
         }
 
@@ -77,7 +78,7 @@ public class MassDatabase {
                 long days = TimeUnit.MILLISECONDS.toDays(expiry.getTime() - date.getTime()) + 1;
                 if (days <= 7) {
                     Messenger.tellPlayer(player, "Your $1 membership will expire in $2 day$3!", membership, days, days == 1 ? "" : "s");
-                    Messenger.tellPlayer(player, "Visit $1 to renew your membership.", "http://themassmc.com/shop");
+                    Messenger.tellPlayer(player, "Visit $1 to renew your membership.", Messenger.STORE_URL);
                 }
             }
             return;
@@ -86,6 +87,7 @@ public class MassDatabase {
         Messenger.tellPlayer(player, "Your $1 membership has expired!", membership);
         Messenger.tellPlayer(player, "Visit $1 to renew your membership.", "http://themassmc.com/shop");
         membership.setType("None");
+        membership.setPriority(0);
         membership.setExpiry(null);
 
         saveMembership(membership);
