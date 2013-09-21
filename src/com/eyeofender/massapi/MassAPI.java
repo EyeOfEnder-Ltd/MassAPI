@@ -1,6 +1,7 @@
 package com.eyeofender.massapi;
 
 import java.util.List;
+import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,11 +18,14 @@ public class MassAPI extends JavaPlugin {
         MassDatabase.initialize(this);
 
         Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
+
+        Messenger.log(Level.INFO, "Version $1 enabled succesfully.", getDescription().getVersion());
     }
 
     @Override
     public void onDisable() {
         MassDatabase.terminate();
+        Messenger.log(Level.INFO, "Version $1 disabled.", getDescription().getVersion());
     }
 
     @Override

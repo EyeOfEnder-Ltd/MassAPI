@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 
 import javax.persistence.PersistenceException;
 
@@ -29,7 +30,7 @@ public class MassDatabase {
         try {
             api.getDatabase().find(Membership.class).findRowCount();
         } catch (PersistenceException ex) {
-            Messenger.log().info("Installing database due to first time usage.");
+            Messenger.log(Level.INFO, "Installing database due to first time usage.");
             api.installDDL();
         }
 

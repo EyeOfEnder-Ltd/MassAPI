@@ -1,6 +1,6 @@
 package com.eyeofender.massapi.chat;
 
-import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -27,8 +27,12 @@ public class Messenger {
         Messenger.api = api;
     }
 
-    public static Logger log() {
-        return api.getLogger();
+    public static void log(Level level, String message) {
+        api.getLogger().log(level, message);
+    }
+
+    public static void log(Level level, String message, Object... args) {
+        log(level, format(message, args));
     }
 
     public static void tellPlayer(Player player, String message) {
