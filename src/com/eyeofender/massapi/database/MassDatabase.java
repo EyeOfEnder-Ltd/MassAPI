@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import javax.persistence.PersistenceException;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -56,6 +57,9 @@ public class MassDatabase {
             membership.setPlayer(player);
             membership.setType("None");
             membership.setPriority(0);
+            membership.setExpiry(null);
+            membership.setPrefix("&f");
+            refreshName(player, membership);
             api.getDatabase().save(membership);
         }
 
@@ -63,13 +67,15 @@ public class MassDatabase {
     }
 
     public static void saveMembership(Membership membership) {
-        api.getDatabase().save(membership);
+        api.getDatabase().update(membership);
     }
 
     public static void validateMembership(Player player, boolean warn) {
         Date date = new Date(new java.util.Date().getTime());
         Membership membership = getMembership(player);
         Date expiry = membership.getExpiry();
+
+        refreshName(player, membership);
 
         if (expiry == null) return;
 
@@ -86,11 +92,18 @@ public class MassDatabase {
 
         Messenger.tellPlayer(player, "Your $1 membership has expired!", membership);
         Messenger.tellPlayer(player, "Visit $1 to renew your membership.", "http://themassmc.com/shop");
+
         membership.setType("None");
         membership.setPriority(0);
         membership.setExpiry(null);
+        membership.setPrefix("&f");
+        refreshName(player, membership);
 
         saveMembership(membership);
+    }
+
+    private static void refreshName(Player player, Membership membership) {
+        player.setDisplayName(ChatColor.translateAlternateColorCodes('&', membership.getPrefix()) + player.getName());
     }
 
     public static void setupPlayer(Player player) {

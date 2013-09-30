@@ -31,6 +31,9 @@ public class Membership {
     @Column
     private Date expiry;
 
+    @Column
+    private String prefix;
+
     public String getName() {
         return name;
     }
@@ -65,6 +68,14 @@ public class Membership {
 
     public void setExpiry(Date expiry) {
         this.expiry = expiry;
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 
 }
