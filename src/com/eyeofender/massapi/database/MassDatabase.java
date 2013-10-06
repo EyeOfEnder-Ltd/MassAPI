@@ -103,7 +103,7 @@ public class MassDatabase {
     }
 
     private static void refreshName(Player player, Membership membership) {
-        player.setDisplayName(ChatColor.translateAlternateColorCodes('&', membership.getPrefix()) + player.getName());
+        player.setDisplayName(ChatColor.translateAlternateColorCodes('&', membership.getPrefix()) + player.getName() + ChatColor.RESET);
     }
 
     public static void setupPlayer(Player player) {

@@ -1,6 +1,6 @@
 name: MassAPI
 main: com.eyeofender.massapi.MassAPI
-version: 1.2.0
+version: 1.2.1
 author: LimeByte
 
 database: true
