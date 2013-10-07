@@ -50,20 +50,7 @@ public class MassDatabase {
     }
 
     public static Membership getMembership(Player player) {
-        Membership membership = api.getDatabase().find(Membership.class).where().ieq("name", player.getName()).findUnique();
-
-        if (membership == null) {
-            membership = new Membership();
-            membership.setPlayer(player);
-            membership.setType("None");
-            membership.setPriority(0);
-            membership.setExpiry(null);
-            membership.setPrefix("&f");
-            refreshName(player, membership);
-            api.getDatabase().save(membership);
-        }
-
-        return membership;
+        return api.getDatabase().find(Membership.class).where().ieq("name", player.getName()).findUnique();
     }
 
     public static void saveMembership(Membership membership) {
@@ -71,8 +58,10 @@ public class MassDatabase {
     }
 
     public static void validateMembership(Player player, boolean warn) {
-        Date date = new Date(new java.util.Date().getTime());
         Membership membership = getMembership(player);
+        if (membership == null) return;
+
+        Date date = new Date(new java.util.Date().getTime());
         Date expiry = membership.getExpiry();
 
         refreshName(player, membership);
@@ -93,17 +82,13 @@ public class MassDatabase {
         Messenger.tellPlayer(player, "Your $1 membership has expired!", membership);
         Messenger.tellPlayer(player, "Visit $1 to renew your membership.", "http://themassmc.com/shop");
 
-        membership.setType("None");
-        membership.setPriority(0);
-        membership.setExpiry(null);
-        membership.setPrefix("&f");
-        refreshName(player, membership);
-
-        saveMembership(membership);
+        api.getDatabase().delete(membership);
+        refreshName(player, null);
     }
 
     private static void refreshName(Player player, Membership membership) {
-        player.setDisplayName(ChatColor.translateAlternateColorCodes('&', membership.getPrefix()) + player.getName() + ChatColor.RESET);
+        String prefix = membership != null ? membership.getPrefix() : "&f";
+        player.setDisplayName(ChatColor.translateAlternateColorCodes('&', prefix) + player.getName() + ChatColor.RESET);
     }
 
     public static void setupPlayer(Player player) {
