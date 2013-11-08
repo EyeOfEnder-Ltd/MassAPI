@@ -12,20 +12,22 @@ import com.eyeofender.massapi.listener.PlayerListener;
 
 public class MassAPI extends JavaPlugin {
 
+    private Messenger messenger;
+
     @Override
     public void onEnable() {
-        Messenger.initialize(this);
+        this.messenger = new Messenger(this);
         MassDatabase.initialize(this);
 
         Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
 
-        Messenger.log(Level.INFO, "Version $1 enabled succesfully.", getDescription().getVersion());
+        messenger.log(Level.INFO, "Version $1 enabled succesfully.", getDescription().getVersion());
     }
 
     @Override
     public void onDisable() {
         MassDatabase.terminate();
-        Messenger.log(Level.INFO, "Version $1 disabled.", getDescription().getVersion());
+        messenger.log(Level.INFO, "Version $1 disabled.", getDescription().getVersion());
     }
 
     @Override
@@ -36,6 +38,10 @@ public class MassAPI extends JavaPlugin {
     @Override
     public List<Class<?>> getDatabaseClasses() {
         return MassDatabase.getDatabaseClasses();
+    }
+
+    public Messenger getMessenger() {
+        return messenger;
     }
 
 }

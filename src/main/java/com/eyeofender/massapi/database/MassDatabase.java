@@ -31,7 +31,7 @@ public class MassDatabase {
         try {
             api.getDatabase().find(Membership.class).findRowCount();
         } catch (PersistenceException ex) {
-            Messenger.log(Level.INFO, "Installing database due to first time usage.");
+            api.getMessenger().log(Level.INFO, "Installing database due to first time usage.");
             api.installDDL();
         }
 
@@ -58,6 +58,7 @@ public class MassDatabase {
     }
 
     public static void validateMembership(Player player, boolean warn) {
+        Messenger messenger = api.getMessenger();
         Membership membership = getMembership(player);
         if (membership == null) return;
 
@@ -72,15 +73,15 @@ public class MassDatabase {
             if (warn) {
                 long days = TimeUnit.MILLISECONDS.toDays(expiry.getTime() - date.getTime()) + 1;
                 if (days <= 7) {
-                    Messenger.tellPlayer(player, "Your $1 membership will expire in $2 day$3!", membership, days, days == 1 ? "" : "s");
-                    Messenger.tellPlayer(player, "Visit $1 to renew your membership.", Messenger.STORE_URL);
+                    messenger.tellPlayer(player, "Your $1 membership will expire in $2 day$3!", membership, days, days == 1 ? "" : "s");
+                    messenger.tellPlayer(player, "Visit $1 to renew your membership.", Messenger.STORE_URL);
                 }
             }
             return;
         }
 
-        Messenger.tellPlayer(player, "Your $1 membership has expired!", membership);
-        Messenger.tellPlayer(player, "Visit $1 to renew your membership.", "http://themassmc.com/shop");
+        messenger.tellPlayer(player, "Your $1 membership has expired!", membership);
+        messenger.tellPlayer(player, "Visit $1 to renew your membership.", "http://themassmc.com/shop");
 
         api.getDatabase().delete(membership);
         refreshName(player, null);

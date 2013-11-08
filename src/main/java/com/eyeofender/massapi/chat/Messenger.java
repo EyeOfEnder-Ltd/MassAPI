@@ -11,36 +11,39 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 
-import com.eyeofender.massapi.MassAPI;
 import com.eyeofender.massapi.database.table.Membership;
 
 public class Messenger {
 
-    private static MassAPI api;
     public static final String STORE_URL = "http://themassmc.com/shop";
 
-    private Messenger() {
+    private Plugin plugin;
+    private String prefix;
 
+    public Messenger(Plugin plugin) {
+        this(plugin, null);
     }
 
-    public static void initialize(MassAPI api) {
-        Messenger.api = api;
+    public Messenger(Plugin plugin, String prefix) {
+        this.plugin = plugin;
+        this.prefix = prefix != null ? prefix : "";
     }
 
-    public static void log(Level level, String message) {
-        api.getLogger().log(level, message);
+    public void log(Level level, String message) {
+        plugin.getLogger().log(level, message);
     }
 
-    public static void log(Level level, String message, Object... args) {
+    public void log(Level level, String message, Object... args) {
         log(level, format(message, args));
     }
 
-    public static void tellPlayer(Player player, String message) {
-        player.sendMessage(message);
+    public void tellPlayer(Player player, String message) {
+        player.sendMessage(prefix + message);
     }
 
-    public static void tellPlayer(Player player, String message, Object... args) {
+    public void tellPlayer(Player player, String message, Object... args) {
         tellPlayer(player, format(message, args));
     }
 
