@@ -1,5 +1,5 @@
 -classpath
-'C:/Users/Aaron/Documents/Eclipse/Workspace/MassAPI/target/classes;C:/Users/Aaron/.m2/repository/org/bukkit/bukkit/1.6.4-R0.1-SNAPSHOT/bukkit-1.6.4-R0.1-SNAPSHOT.jar'
+'C:/Users/Aaron/Documents/Eclipse/Workspace/MassAPI/target/classes;C:/Users/Aaron/.m2/repository/org/bukkit/bukkit/1.6.4-R2.1-SNAPSHOT/bukkit-1.6.4-R2.1-SNAPSHOT.jar'
 -encoding
 'UTF-8'
 -public
@@ -15,10 +15,10 @@
 -docencoding
 'UTF-8'
 -doctitle
-'MassAPI 3.0.0 API'
+'MassAPI 3.1.0 API'
 -linkoffline
 'http://docs.oracle.com/javase/6/docs/api' 'C:/Users/Aaron/Documents/Eclipse/Workspace/MassAPI/target/javadoc-bundle-options'
 -use
 -version
 -windowtitle
-'MassAPI 3.0.0 API'
+'MassAPI 3.1.0 API'

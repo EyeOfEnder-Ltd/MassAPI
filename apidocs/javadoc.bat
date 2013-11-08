@@ -1,1 +1,1 @@
-"C:\Program Files\Java\jdk1.7.0_40\jre\..\bin\javadoc.exe" @options @packages
+"C:\Program Files\Java\jdk1.6.0_45\jre\..\bin\javadoc.exe" @options @packages
