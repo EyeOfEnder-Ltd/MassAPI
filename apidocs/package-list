@@ -2,4 +2,5 @@ com.eyeofender.massapi
 com.eyeofender.massapi.chat
 com.eyeofender.massapi.database
 com.eyeofender.massapi.database.table
+com.eyeofender.massapi.gui
 com.eyeofender.massapi.listener
