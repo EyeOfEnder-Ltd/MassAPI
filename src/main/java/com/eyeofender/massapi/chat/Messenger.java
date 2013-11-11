@@ -2,6 +2,7 @@ package com.eyeofender.massapi.chat;
 
 import java.util.logging.Level;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -40,7 +41,7 @@ public class Messenger {
     }
 
     public void tellPlayer(Player player, String message) {
-        player.sendMessage(prefix + message);
+        player.sendMessage(prefix + ChatColor.RESET + message);
     }
 
     public void tellPlayer(Player player, String message, Object... args) {
