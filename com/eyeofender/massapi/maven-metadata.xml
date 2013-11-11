@@ -3,10 +3,10 @@
   <groupId>com.eyeofender</groupId>
   <artifactId>massapi</artifactId>
   <versioning>
-    <release>3.1.0</release>
+    <release>3.1.1</release>
     <versions>
-      <version>3.1.0</version>
+      <version>3.1.1</version>
     </versions>
-    <lastUpdated>20131108075302</lastUpdated>
+    <lastUpdated>20131111221512</lastUpdated>
   </versioning>
 </metadata>
