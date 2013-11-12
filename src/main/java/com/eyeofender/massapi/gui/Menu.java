@@ -35,7 +35,11 @@ public abstract class Menu implements Listener {
         inventory = Bukkit.getServer().createInventory(null, (int) (Math.ceil(slots / 9.0) * 9.0), title);
 
         for (int i = 0; i < slots; i++) {
-            if (iconSpacing && i % 2 == 0) inventory.setItem(i, icons[i / 2]);
+            if (iconSpacing) {
+                if (i % 2 == 0) inventory.setItem(i, icons[i / 2]);
+            } else {
+                inventory.setItem(i, icons[i]);
+            }
         }
     }
 
